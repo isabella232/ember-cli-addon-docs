@@ -25,6 +25,14 @@ module.exports = function(defaults) {
       }
     },
 
+    includeFileExtensionInSnippetNames: false,
+
+    'ember-prism': {
+      theme: 'twilight',
+      components: ['scss', 'javascript'],
+      plugins: ['line-highlight']
+    },
+
     'ember-cli-addon-docs': {
       projects: {
         sandbox: new MergeTrees([

@@ -1,7 +1,7 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 import layout from './template';
-import Snippets from "dummy/snippets";
+// import Snippets from "dummy/snippets";
 
 /**
   A snippet component for demonstrating some code
@@ -61,7 +61,9 @@ export default Component.extend({
     if (!this.get('unindent')) {
       return src;
     }
-    var match, min, lines = src.split("\n").filter(l => l !== '');
+    var match,
+      min,
+      lines = src.split('\n').filter(l => l !== '');
     for (var i = 0; i < lines.length; i++) {
       match = /^[ \t]*/.exec(lines[i]);
       if (match && (typeof min === 'undefined' || min > match[0].length)) {
@@ -69,21 +71,22 @@ export default Component.extend({
       }
     }
     if (typeof min !== 'undefined' && min > 0) {
-      src = src.replace(new RegExp("^[ \t]{" + min + "}", 'gm'), "");
+      src = src.replace(new RegExp('^[ \t]{' + min + '}', 'gm'), '');
     }
     return src;
   },
 
-  snippetText: computed('name', function(){
+  snippetText: computed('name', function() {
     let name = this.get('name');
     if (!/\..+/.test(name)) {
       name += '.hbs';
     }
 
     return this._unindent(
-      (Snippets[name] || "")
-        .replace(/^(\s*\n)*/, '')
-        .replace(/\s*$/, '')
+      ''
+      // (Snippets[name] || "")
+      //   .replace(/^(\s*\n)*/, '')
+      //   .replace(/\s*$/, '')
     );
-  }),
+  })
 });
